@@ -4,7 +4,23 @@
     <h1>STAFF PAGE</h1>
 
     <h2>LINQ QUERY</h2>
-   
+    <pre>
+        var results = from x in Employees 
+        orderby x.LastName, x.FirstName
+        select new
+        {
+            Name = x.LastName + ", " + x.FirstName,
+            ScheduledShifts = (from y in x.Schedules
+				               select new
+					            {
+						            Date = y.Day,
+						            HourlyWage = y.HourlyWage, 
+						            Overtime = y.OverTime
+					
+					            })
+        };
+        results.Dump();
+    </pre>
 
 </asp:Content>
 
